@@ -1,6 +1,6 @@
 {
 	"name": "protect-static-pages",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "protect-static-pages password protects static pages. It uses AES-256 from crypto-js library to encrypt static pages and produce a HTML file with a password prompt to decrypted in-browser (client side).",
 	"keywords": [
 		"html",
