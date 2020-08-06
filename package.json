@@ -1,0 +1,143 @@
+{
+	"name": "protect-static-pages",
+	"version": "0.0.0",
+	"description": "protect-static-pages password protects static pages. It uses AES-256 from crypto-js library to encrypt static pages and produce a HTML file with a password prompt to decrypted in-browser (client side).",
+	"keywords": [
+		"html",
+		"pages",
+		"static",
+		"github",
+		"password",
+		"protected",
+		"encrypted",
+		"encryption"
+	],
+	"main": "./build/main.js",
+	"bin": {
+		"protect-static-pages": "./build/main.js"
+	},
+	"author": "Alex Munene",
+	"license": "MIT",
+	"homepage": "https://github.com/51gn3d/protect-static-pages#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/51gn3d/protect-static-pages.git"
+	},
+	"bugs": {
+		"url": "https://github.com/51gn3d/protect-static-pages/issues"
+	},
+	"scripts": {
+		"release-dry-run": "dotenv -e .env release-it --dry-run",
+		"release-minor": "dotenv -e .env release-it minor",
+		"release-major": "dotenv -e .env release-it major",
+		"prepublish": "./node_modules/.bin/babel ./src --out-dir ./build",
+		"eslint:fix": "eslint './**/*.js' --fix",
+		"eslint": "eslint './**/*.js'"
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-env"
+		]
+	},
+	"eslintConfig": {
+		"env": {
+			"node": true
+		},
+		"parser": "babel-eslint",
+		"parserOptions": {
+			"es6": true,
+			"ecmaVersion": 2020,
+			"ecmaFeatures": {
+				"jsx": true
+			},
+			"sourceType": "module"
+		},
+		"extends": [
+			"airbnb-base",
+			"prettier"
+		],
+		"plugins": [
+			"prettier"
+		],
+		"ignorePatterns": [
+			"lib",
+			"build",
+			"node_modules"
+		],
+		"rules": {
+			"no-console": "off",
+			"func-names": "off",
+			"no-plusplus": "off",
+			"no-unused-vars": "off",
+			"global-require": "off",
+			"no-param-reassign": "off",
+			"no-underscore-dangle": "off",
+			"import/no-dynamic-require": "off",
+			"prettier/prettier": [
+				"error",
+				{
+					"printWidth": 80,
+					"tabWidth": 4,
+					"useTabs": true,
+					"singleQuote": true,
+					"bracketSpacing": true,
+					"trailingComma": "es5"
+				}
+			]
+		}
+	},
+	"release-it": {
+		"force": true,
+		"verbose": true,
+		"hooks": {
+			"before:init": "npm run eslint:fix",
+			"before:release": "npm run prepublish"
+		},
+		"src": {
+			"commitMessage": "protect-static-pages v%s release",
+			"tagAnnotation": "v%s release"
+		},
+		"git": {
+			"requireCleanWorkingDir": false,
+			"commitMessage": "protect-static-pages v${version} release",
+			"tagAnnotation": "v${version} release "
+		},
+		"github": {
+			"release": false,
+			"releaseName": "protect-static-pages v${version}",
+			"tokenRef": "GITHUB_TOKEN"
+		},
+		"npm": {
+			"publish": true
+		},
+		"prompt": {
+			"src": {
+				"status": true,
+				"commit": true,
+				"tag": true,
+				"push": true,
+				"release": true,
+				"publish": true
+			}
+		}
+	},
+	"dependencies": {
+		"crypto-js": ">=3.1.9-1",
+		"yargs": ">=10.0.3"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.10.5",
+		"@babel/core": "^7.10.5",
+		"@babel/preset-env": "^7.10.4",
+		"babel-eslint": "^10.1.0",
+		"babel-loader": "^8.1.0",
+		"dotenv-cli": "^3.2.0",
+		"eslint": "^7.5.0",
+		"eslint-config-airbnb-base": "^14.2.0",
+		"eslint-config-prettier": "^6.11.0",
+		"eslint-plugin-import": "^2.22.0",
+		"eslint-plugin-prettier": "^3.1.4",
+		"prettier": "^2.0.5",
+		"release-it": "^13.6.6"
+	}
+}
